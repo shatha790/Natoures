@@ -1,0 +1,92 @@
+.story {
+  width: 75%;
+  margin: 0 auto;
+  position: relative;
+  box-shadow: 0 3rem 6rem rgba($color-black, 0.1);
+  background-color: rgba($color-white, 0.6);
+  border-radius: 3px;
+  padding: 6rem;
+  padding-left: 9rem;
+  font-size: $default-font-size;
+  //   if we do this it will apply only on the text because the transform property
+  // only apply once and the img have  transform: translateX(-3rem); so we add the
+  // transform: skewX(-12deg); to both text an img
+  transform: skewX(-12deg);
+
+  @include respond(tab-port) {
+    width: 100%;
+    padding: 4rem;
+    padding-left: 7rem;
+  }
+  @include respond(phone) {
+    transform: skewX(0);
+  }
+  &__shape {
+    width: 15rem;
+    height: 15rem;
+    background-color: orange;
+    // the element will be float if you put damnation hight and width
+    float: left;
+
+    // to add space between the text and image
+    transform: translateX(-3rem) skewX(12deg);
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;
+    @supports (clip-path: polygon(0 0)) or (-webkit-clip-path: polygon(0 0)) {
+      // define
+      // where the content floats around the element(image)
+      // in this case, a circle, and if we actually want the element
+      // to look like that circle, we can then use
+      // the clip-path property
+      -webkit-shape-outside: circle(50% at 50% 50%);
+      shape-outside: circle(50% at 50% 50%);
+      -webkit-clip-path: circle(50% at 50% 50%);
+      clip-path: circle(50% at 50% 50%);
+      border-radius: none;
+    }
+
+    @include respond(phone) {
+      transform: translateX(-3rem) skewX(0);
+    }
+  }
+  &__img {
+    // img inside the shape if we side the height 100% the 100% of the parent 15rem
+    // 100%=15rem
+    height: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1.4);
+    transition: all 0.5s;
+  }
+  &__text {
+    transform: skewX(12deg);
+
+    @include respond(phone) {
+      transform: skewX(0);
+    }
+  }
+  &__caption {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 20%);
+    color: $color-white;
+    text-transform: uppercase;
+    font-size: 1.7rem;
+    text-align: center;
+    opacity: 0;
+    transition: all 0.5s;
+    backface-visibility: hidden;
+  }
+  //   if we hover the story the class &__caption will change
+  &:hover &__caption {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+  &:hover &__img {
+    transform: translate(-50%, -50%) scale(1);
+    filter: blur(3px) brightness(80%);
+  }
+}

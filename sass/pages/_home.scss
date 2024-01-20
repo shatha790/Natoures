@@ -1,0 +1,106 @@
+.section-about {
+  background-color: $color-gray-light-1;
+  padding: 25rem 0;
+  //   to make the section move up because the hero section is clipping about 75vh from right and the whole section is about 95vh so 95-75=20vh
+  //   clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+  //     height: 95vh; <to header
+  //   move it to understand well
+  margin-top: -20vh;
+  @include respond(tab-port) {
+    padding: 20rem 0;
+  }
+}
+.section-feature {
+  padding: 20rem 0;
+  background-image: linear-gradient(
+      to right bottom,
+      rgba($color-primary-light, 0.8),
+      rgba($color-primary-dark, 0.8)
+    ),
+    url(../img/nat-4.jpg);
+  background-size: cover;
+  // we can use the clipping like hero but this easier
+  transform: skewY(-7deg);
+  margin-top: -10rem;
+  // .section-feature > *   select all child in .section-feature which is row
+  & > * {
+    transform: skewY(7deg);
+  }
+  @include respond(tab-port) {
+    padding: 10rem 0;
+  }
+}
+.section-tours {
+  background-color: $color-gray-light-1;
+  padding: 25rem 0 15rem 0;
+  margin-top: -10rem;
+  @include respond(tab-port) {
+    padding: 20rem 0 10rem 0;
+  }
+}
+.section-stories {
+  position: relative;
+  padding: 15rem 0;
+  @include respond(tab-port) {
+    padding: 10rem 0;
+  }
+}
+.section-book {
+  padding: 15rem 0;
+  background-image: linear-gradient(
+    to right bottom,
+    $color-primary-light,
+    $color-primary-dark
+  );
+  @include respond(tab-port) {
+    padding: 20rem 0 10rem 0;
+  }
+}
+.book {
+  background-image: linear-gradient(
+      105deg,
+      rgba($color-white, 0.9) 50%,
+      transparent 50%
+    ),
+    url(../img/nat-10.jpg);
+  background-size: 100%;
+  border-radius: 3px;
+  box-shadow: 0 1.5rem 4rem rgba($color-primary-dark, 0.2);
+  // we first add height and then remove it i think because first we do not have any element
+  // height: 50rem;
+
+  //! landscape
+  @include respond(tab-land) {
+    background-image: linear-gradient(
+        105deg,
+        rgba($color-white, 0.9) 0,
+        rgba($color-white, 0.9) 65%,
+        transparent 65%
+      ),
+      url(../img/nat-10.jpg);
+
+    background-size: cover;
+  }
+
+  //! tab-port respond
+  @include respond(tab-port) {
+    background-image: linear-gradient(
+        to right,
+        rgba($color-white, 0.9) 0,
+        rgba($color-white, 0.9) 100%,
+        transparent 65%
+      ),
+      url(../img/nat-10.jpg);
+  }
+  &__form {
+    width: 50%;
+    padding: 6rem;
+    @include respond(tab-land) {
+      width: 65%;
+    }
+
+    @include respond(tab-port) {
+      width: 100%;
+    }
+  }
+}
